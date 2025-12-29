@@ -4,11 +4,11 @@
 
 ### *Where Productivity Meets Intelligence*
 
-[![Status](https://img.shields.io/badge/Status-Production%20Ready-success?style=for-the-badge)](https://github.com/newman1x1/taskmaster-pro)
+[![Status](https://img.shields.io/badge/Status-Production%20Ready-success?style=for-the-badge)](https://github.com/sourcecodeRTX/taskmaster-pro)
 [![PWA](https://img.shields.io/badge/PWA-Enabled-0078D4?style=for-the-badge&logo=pwa)](https://web.dev/progressive-web-apps/)
 [![Encryption](https://img.shields.io/badge/Encryption-AES--256-00C853?style=for-the-badge&logo=letsencrypt)](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
-[![Made with Love](https://img.shields.io/badge/Made%20with-❤️-red?style=for-the-badge)](https://github.com/newman1x1)
+[![Made with Love](https://img.shields.io/badge/Made%20with-❤️-red?style=for-the-badge)](https://github.com/sourcecodeRTX)
 
 <p align="center">
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" />
@@ -24,7 +24,7 @@
 
 ### *A revolutionary TO-DO application that combines stunning design with military-grade encryption, offering 60+ features for ultimate productivity*
 
-<img src="https://raw.githubusercontent.com/newman1x1/taskmaster-pro/main/assets/preview.gif" alt="TaskMaster Pro Preview" width="800"/>
+<img src="https://raw.githubusercontent.com/sourcecodeRTX/taskmaster-pro/main/assets/preview.gif" alt="TaskMaster Pro Preview" width="800"/>
 
 </div>
 
@@ -59,7 +59,7 @@
 
 <div align="center">
 
-### **[👉 Try TaskMaster Pro Now](https://newman1x1.github.io/TaskMaster_Pro/)** 
+### **[👉 Try TaskMaster Pro Now](https://sourcecodeRTX.github.io/TaskMaster_Pro/)** 
 
 *No installation required • Works on all devices • Instant access*
 
@@ -348,14 +348,14 @@ Animated gradient with glow effects shows your productivity at a glance.
 # 1. Fork this repository
 # 2. Go to Settings → Pages
 # 3. Set source to "main" branch
-# 4. Your app will be live at: https://newman1x1.github.io/TaskMaster_Pro/
+# 4. Your app will be live at: https://sourcecodeRTX.github.io/TaskMaster_Pro/
 ```
 
 ### Method 2: Local Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/newman1x1/taskmaster-pro.git
+git clone https://github.com/sourcecodeRTX/taskmaster-pro.git
 
 # Navigate to directory
 cd taskmaster-pro
@@ -1584,7 +1584,7 @@ git push origin feature/amazing-feature
 **Free • Open Source • No Restrictions**
 
 ```
-Copyright (c) 2024 newman1x1
+Copyright (c) 2024 sourcecodeRTX
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software...
@@ -1645,18 +1645,18 @@ of this software...
 
 If you find TaskMaster Pro useful, please consider giving it a star!
 
-[![GitHub stars](https://img.shields.io/github/stars/newman1x1/taskmaster-pro?style=social)](https://github.com/newman1x1/taskmaster-pro/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/newman1x1/taskmaster-pro?style=social)](https://github.com/newman1x1/taskmaster-pro/network/members)
+[![GitHub stars](https://img.shields.io/github/stars/sourcecodeRTX/taskmaster-pro?style=social)](https://github.com/sourcecodeRTX/taskmaster-pro/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/sourcecodeRTX/taskmaster-pro?style=social)](https://github.com/sourcecodeRTX/taskmaster-pro/network/members)
 
 ---
 
 ### 📬 Connect With Me
 
-[![GitHub](https://img.shields.io/badge/GitHub-newman1x1-181717?style=for-the-badge&logo=github)](https://github.com/newman1x1)
+[![GitHub](https://img.shields.io/badge/GitHub-sourcecodeRTX-181717?style=for-the-badge&logo=github)](https://github.com/sourcecodeRTX)
 
 ---
 
-**Made with ❤️ by newman1x1**
+**Made with ❤️ by sourcecodeRTX**
 
 *TaskMaster Pro - Where Productivity Meets Intelligence* ✨
 
@@ -1664,3 +1664,4 @@ If you find TaskMaster Pro useful, please consider giving it a star!
 
 
 </div>
+
