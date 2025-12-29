@@ -1038,7 +1038,8 @@ body.light-theme .modal-content {
     gap: 0.5rem;
 }
 
-.modal-close {
+/* This targets only the small 'X' buttons in the top corners */
+.modal-header .modal-close {
     width: 36px;
     height: 36px;
     border-radius: 50%;
@@ -1053,9 +1054,16 @@ body.light-theme .modal-content {
     transition: var(--transition-fast);
 }
 
-.modal-close:hover {
+.modal-header .modal-close:hover {
     background: var(--danger);
     color: white;
+}
+
+/* This ensures the 'Done' button remains a functional close trigger without being forced into a circle */
+.modal-footer .modal-close {
+    width: auto;
+    height: auto;
+    border-radius: var(--border-radius);
 }
 
 .modal-body {
@@ -1399,4 +1407,5 @@ body.light-theme .modal-content {
         break-inside: avoid;
         page-break-inside: avoid;
     }
+
 }
