@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Modern, feature-rich TO-DO app with encryption, priorities, and analytics">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>TaskMaster Pro - Smart TO-DO App</title>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%236366f1'/%3E%3Cpath d='M30 50 L45 65 L70 35' stroke='white' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%236366f1'/%3E%3Cpath d='M30 50 L45 65 L70 35' stroke='white' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="app-header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="bi bi-check-circle-fill"></i>
+                <h1>TaskMaster Pro</h1>
+            </div>
+            <div class="header-actions">
+                <button id="theme-toggle" class="icon-btn" title="Toggle theme">
+                    <i class="bi bi-moon-fill"></i>
+                </button>
+                <button id="export-btn" class="icon-btn" title="Export data">
+                    <i class="bi bi-download"></i>
+                </button>
+                <button id="import-btn" class="icon-btn" title="Import data">
+                    <i class="bi bi-upload"></i>
+                </button>
+                <button id="share-btn" class="icon-btn" title="Share tasks">
+                    <i class="bi bi-share"></i>
+                </button>
+                <input type="file" id="import-file" accept=".json" style="display: none;">
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3><i class="bi bi-filter"></i> Filters</h3>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="bi bi-list-ul"></i> All Tasks
+                    </button>
+                    <button class="filter-btn" data-filter="active">
+                        <i class="bi bi-circle"></i> Active
+                    </button>
+                    <button class="filter-btn" data-filter="completed">
+                        <i class="bi bi-check-circle"></i> Completed
+                    </button>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3><i class="bi bi-folder"></i> Categories</h3>
+                <select id="category-filter" class="category-select">
+                    <option value="all">All Categories</option>
+                    <option value="work">💼 Work</option>
+                    <option value="personal">👤 Personal</option>
+                    <option value="shopping">🛒 Shopping</option>
+                    <option value="health">💪 Health</option>
+                    <option value="study">📚 Study</option>
+                    <option value="other">📌 Other</option>
+                </select>
+            </div>
+
+            <div class="sidebar-section stats-section">
+                <h3><i class="bi bi-bar-chart"></i> Statistics</h3>
+                <div class="stat-card">
+                    <div class="stat-item">
+                        <span class="stat-label">Total</span>
+                        <span class="stat-value" id="total-tasks">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Active</span>
+                        <span class="stat-value" id="active-tasks">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Done</span>
+                        <span class="stat-value" id="completed-tasks">0</span>
+                    </div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <span class="progress-text" id="completion-rate">0%</span>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <button id="clear-completed" class="btn-secondary full-width">
+                    <i class="bi bi-trash"></i> Clear Completed
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Search Bar -->
+            <div class="search-container">
+                <i class="bi bi-search search-icon"></i>
+                <input type="text" 
+                       id="search-input" 
+                       class="search-input" 
+                       placeholder="Search tasks, tags...">
+            </div>
+
+            <!-- Task Input Area -->
+            <div class="task-input-card">
+                <div class="input-row">
+                    <input type="text" 
+                           id="input-task" 
+                           class="task-input" 
+                           placeholder="What needs to be done?">
+                    <button id="add-btn" class="btn-primary">
+                        <i class="bi bi-plus-lg"></i>
+                        <span>Add Task</span>
+                    </button>
+                </div>
+                <div class="input-meta">
+                    <div class="meta-group">
+                        <label><i class="bi bi-flag"></i> Priority:</label>
+                        <select id="priority-select" class="meta-select">
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                    <div class="meta-group">
+                        <label><i class="bi bi-folder"></i> Category:</label>
+                        <select id="category-select" class="meta-select">
+                            <option value="personal">👤 Personal</option>
+                            <option value="work">💼 Work</option>
+                            <option value="shopping">🛒 Shopping</option>
+                            <option value="health">💪 Health</option>
+                            <option value="study">📚 Study</option>
+                            <option value="other">📌 Other</option>
+                        </select>
+                    </div>
+                    <div class="meta-group">
+                        <label><i class="bi bi-calendar"></i> Due:</label>
+                        <input type="date" id="due-date-input" class="meta-input">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Task List -->
+            <div class="task-list-container">
+                <ul id="task-list"></ul>
+            </div>
+        </main>
+    </div>
+
+    <!-- Confirm Modal -->
+    <div id="confirm-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Confirm</h2>
+                <button class="modal-close"><i class="bi bi-x"></i></button>
+            </div>
+            <div class="modal-body">
+                <p id="modal-message">Are you sure?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary modal-cancel">Cancel</button>
+                <button id="modal-confirm" class="btn-danger">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Task Details Modal -->
+    <div id="details-modal" class="modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2>Task Details</h2>
+                <button class="modal-close"><i class="bi bi-x"></i></button>
+            </div>
+            <div class="modal-body" id="details-content">
+                <!-- Dynamic content -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary modal-close">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Share Modal -->
+    <div id="share-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="bi bi-share"></i> Share Tasks</h2>
+                <button class="modal-close"><i class="bi bi-x"></i></button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-description">
+                    Generate an encrypted shareable link. The recipient will need the password to decrypt and view your tasks.
+                </p>
+                <div class="form-group">
+                    <label for="share-password">Set Password:</label>
+                    <input type="password" 
+                           id="share-password" 
+                           class="form-input" 
+                           placeholder="Enter a strong password">
+                </div>
+                <button onclick="app.generateShareURL()" class="btn-primary full-width">
+                    <i class="bi bi-shield-lock"></i> Generate Encrypted Link
+                </button>
+                <div id="share-url-container" style="display: none; margin-top: 1rem;">
+                    <label>Share this link:</label>
+                    <div class="url-output-container">
+                        <input type="text" 
+                               id="share-url-output" 
+                               class="form-input" 
+                               readonly>
+                        <button onclick="app.copyShareURL()" class="btn-secondary">
+                            <i class="bi bi-clipboard"></i> Copy
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary modal-close">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Decrypt Modal -->
+    <div id="decrypt-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="bi bi-unlock"></i> Decrypt Shared Tasks</h2>
+            </div>
+            <div class="modal-body">
+                <p class="modal-description">
+                    This link contains encrypted tasks. Enter the password to decrypt and import them.
+                </p>
+                <div class="form-group">
+                    <label for="decrypt-password">Password:</label>
+                    <input type="password" 
+                           id="decrypt-password" 
+                           class="form-input" 
+                           placeholder="Enter password">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary modal-cancel">Cancel</button>
+                <button id="decrypt-btn" class="btn-primary">
+                    <i class="bi bi-unlock"></i> Decrypt & Import
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Register Service Worker for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registered:', registration.scope);
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed:', err);
+                    });
+            });
+        }
+
+        // Install prompt for PWA
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // Show custom install button/prompt if desired
+            console.log('App can be installed');
+        });
+
+        window.addEventListener('appinstalled', () => {
+            console.log('App installed successfully');
+            deferredPrompt = null;
+        });
+    </script>
+</body>
+
+</html>
